@@ -44,10 +44,6 @@
 2. Agregala a tu pantalla de inicio para **"Instalarla"** en tu dispositivo
 3. ¡Listo! Funciona como una app nativa
 
-### Desde GitHub Pages
-1. Ve a: [https://yandrox.github.io/Img2-PBR-Generator](https://yandrox.github.io/Img2-PBR-Generator)
-2. La app se carga automáticamente
-
 ### Localmente
 **Clona el repositorio**
 
