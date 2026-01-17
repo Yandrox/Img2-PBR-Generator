@@ -40,7 +40,7 @@
 ## 🚀 Cómo Usar
 
 ### Online (Recomendado)
-1. Visita: [https://yandrox.unaux.com/img2-pbr](https://yandrox.unaux.com/img2-pbr)
+1. Visita: [https://yandrox.unaux.com/img2-pbr/index.html](https://yandrox.unaux.com/img2-pbr/index.html)
 2. Agregala a tu pantalla de inicio para **"Instalarla"** en tu dispositivo
 3. ¡Listo! Funciona como una app nativa
 
