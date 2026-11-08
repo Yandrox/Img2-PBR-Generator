@@ -126,5 +126,7 @@ Yandrox - Desarrollador Independiente
 ---
 
 ## ⭐ ¿Te gusta el proyecto?
+
 ¡Considera darle una estrella en GitHub!
+
 Esto ayuda a que más personas descubran la herramienta.
