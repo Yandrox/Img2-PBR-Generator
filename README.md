@@ -40,9 +40,10 @@
 ## Plataformas y Descargas
 
 ### Android (APK)
-La aplicación está disponible como un archivo `.apk` nativo para su instalación en dispositivos Android.
-* **Descargar APK:** [Haz clic aquí para descargar la última versión (v1.0.0)](enlace-a-tu-apk-aqui) 
-*(Nota para el desarrollador: Sustituye "enlace-a-tu-apk-aqui" por el enlace de tu GitHub Releases cuando subas el archivo).*
+La versión para Android ha sido empaquetada utilizando **WebToApp**, una herramienta que convierte mi PWA (Web App Progresiva) en un contenedor nativo.
+
+Esto garantiza el mismo rendimiento, interfaz y funcionamiento offline que la versión web, pero con la comodidad de una instalación tradicional.
+* **Descargar APK:** [Haz clic aquí para descargar la última versión](https://github.com/Yandrox/Img2-PBR-Generator/releases/)
 * **Instalación:** Es posible que debas habilitar la "Instalación de fuentes desconocidas" en los ajustes de seguridad de tu dispositivo.
 
 ### Web (PWA)
@@ -69,6 +70,7 @@ Puedes usar la aplicación directamente en tu navegador o instalarla como una Ap
 * **Service Workers:** Soporte para funcionamiento offline y caché (PWA).
 * **Web App Manifest:** Configuración para instalación en dispositivos móviles y PC.
 * **JSZip:** Generación de archivos comprimidos para la descarga múltiple.
+* **WebToApp:** Empaquetado de la PWA en un archivo APK para su distribución en Android.
 
 ---
 
@@ -79,7 +81,7 @@ Actualmente trabajando en futuras versiones:
 - ✅ Generación de 6 mapas PBR base.
 - ✅ Exportación múltiple en ZIP.
 - ✅ Versión App Web Progresiva (PWA).
-- ✅ Versión Android (APK).
+- ✅ Versión Android (APK vía WebToApp).
 - ❌ Implementación de algoritmos de generación avanzados (Edge detection para AO).
 - ❌ Soporte para texturas de alta resolución (4K sin pérdida de rendimiento).
 - ❌ Modo de previsualización 3D en tiempo real (Three.js).
@@ -122,6 +124,9 @@ Yandrox - Desarrollador Independiente
 ## Agradecimientos
 
 - A la comunidad de artistas 3D por el feedback y los casos de prueba.
+- A la comunidad Open Source por el soporte con JSZip y las herramientas base.
+- A WebToApp por facilitar el empaquetado de la PWA para Android.
+- A la documentación de Mozilla Developer Network (MDN) por las guías sobre Canvas API.
 
 ---
 
