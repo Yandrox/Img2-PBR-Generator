@@ -3,409 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Img2 PBR Generator</title>
+    <title>Img2 PBR Generator | Texturizado 3D</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="apple-touch-icon" href="icon.svg">
 </head>
 <body>
-    <div class="container">
-        <!-- Cabecera -->
-        <header>
-            <h1>🔄 Img2 PBR Generator</h1>
-            <p class="subtitle">Generador de mapas PBR para artistas 3D</p>
-        </header>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <img src="icon.svg" alt="Logo Img2 PBR" class="logo-img">
+                Img2 PBR
+            </a>
+            <nav class="main-nav">
+                <button class="tab-btn active" data-tab="generator">
+                    <svg class="icon"><use href="icons.svg#i-palette"/></svg> Generador
+                </button>
+                <button class="tab-btn" data-tab="help">
+                    <svg class="icon"><use href="icons.svg#i-book"/></svg> Guía
+                </button>
+                <button class="tab-btn" data-tab="about">
+                    <svg class="icon"><use href="icons.svg#i-info"/></svg> Acerca de
+                </button>
+            </nav>
+        </div>
+    </header>
 
-        <!-- Navegación -->
-        <nav class="tabs">
-            <button class="tab-btn active" data-tab="generator">🎨 Generador</button>
-            <button class="tab-btn" data-tab="help">📚 Ayuda</button>
-            <button class="tab-btn" data-tab="about">ℹ️ Acerca de</button>
-        </nav>
+    <main class="main-content container">
+        
+        <!-- GENERADOR -->
+        <div id="tab-generator" class="tab-pane active">
+            <div class="hero">
+                <h1>Genera mapas PBR en segundos</h1>
+                <p>Sube tu textura y obtén Normal, Roughness, Metalness y más. Todo procesado localmente en tu navegador, sin subir archivos a internet.</p>
+            </div>
 
-        <!-- Contenido de pestañas -->
-        <div class="tab-content">
-            <!-- Pestaña 1: Generador -->
-            <div id="tab-generator" class="tab-pane active">
-                <!-- Sección 1: Cargar imagen -->
-                <section class="card">
-                    <h2>📁 Cargar Textura Base</h2>
-                    <div class="file-input">
-                        <input type="file" id="fileInput" accept="image/*" hidden>
-                        <button id="selectFile" class="btn primary">
-                            <span class="btn-icon">📂</span> Seleccionar Imagen
-                        </button>
-                        <span id="fileName">No hay archivo seleccionado</span>
-                    </div>
-                    <div class="file-info">
-                        <small>Formatos soportados: JPG, PNG, WEBP, GIF</small>
-                        <small>Máximo recomendado: 2048x2048 px</small>
-                    </div>
-                </section>
-
-                <!-- Vista Previa -->
-                <section class="card">
-                    <h2>🖼️ Vista Previa</h2>
-                    <div class="image-comparison-container">
-                        <div class="image-comparison-item">
-                            <h3>Imagen Original</h3>
-                            <div class="canvas-container">
-                                <canvas id="originalCanvas"></canvas>
-                                <div id="originalPlaceholder" class="canvas-placeholder">
-                                    <span class="placeholder-icon">🖼️</span>
-                                    <span>Cargar imagen primero</span>
-                                </div>
-                            </div>
+            <div class="app-layout">
+                <div class="controls-column">
+                    <div class="card">
+                        <div class="card-header">
+                            <svg class="icon"><use href="icons.svg#i-folder"/></svg>
+                            <h2>1. Textura Base</h2>
                         </div>
-                        
-                        <div class="image-comparison-item">
-                            <h3>Mapa Generado</h3>
-                            <div class="canvas-container">
-                                <canvas id="resultCanvas"></canvas>
-                                <div id="resultPlaceholder" class="canvas-placeholder">
-                                    <span class="placeholder-icon">✨</span>
-                                    <span>Generar mapa para ver resultado</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Configuración -->
-                <section class="card">
-                    <h2>⚙️ Configuración</h2>
-                    
-                    <div class="config-item">
-                        <label for="mapType">Tipo de Mapa:</label>
-                        <select id="mapType">
-                            <option value="normal">Normal Map</option>
-                            <option value="height">Height/Displacement</option>
-                            <option value="ao">Ambient Occlusion</option>
-                            <option value="roughness">Roughness</option>
-                            <option value="metalness">Metalness</option>
-                            <option value="opacity">Opacity</option>
-                        </select>
-                        <div class="map-description" id="mapDescription">
-                            Genera mapas de normales a partir de texturas de altura
-                        </div>
-                    </div>
-
-                    <div class="config-item">
-                        <div class="slider-header">
-                            <label>Intensidad: <span id="strengthValue">1.0</span></label>
-                            <div class="slider-info" id="strengthInfo">
-                                Controla la fuerza del efecto
-                            </div>
-                        </div>
-                        <input type="range" id="strength" min="0.1" max="5.0" step="0.1" value="1.0">
-                        <div class="slider-labels">
-                            <span>Suave</span>
-                            <span>Medio</span>
-                            <span>Fuerte</span>
-                        </div>
-                    </div>
-
-                    <div class="config-item">
-                        <h3>🔄 Opciones de Inversión</h3>
-                        <div class="inversion-grid">
-                            <label class="inversion-option">
-                                <input type="checkbox" id="invertY">
-                                <span class="inversion-label">
-                                    <span class="inversion-icon">🔄</span>
-                                    Invertir Y (OpenGL/DirectX)
-                                </span>
-                                <small>Para compatibilidad con diferentes motores</small>
-                            </label>
-                            
-                            <label class="inversion-option">
-                                <input type="checkbox" id="invertR">
-                                <span class="inversion-label">
-                                    <span class="inversion-icon">🔴</span>
-                                    Invertir Canal Rojo
-                                </span>
-                                <small>Invierte el eje X del normal map</small>
-                            </label>
-                            
-                            <label class="inversion-option">
-                                <input type="checkbox" id="invertG">
-                                <span class="inversion-label">
-                                    <span class="inversion-icon">🟢</span>
-                                    Invertir Canal Verde
-                                </span>
-                                <small>Invierte el eje Y del normal map</small>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button id="generate" class="btn success">
-                            <span class="btn-icon">✨</span> Generar Mapa
-                        </button>
-                        <button id="reset" class="btn secondary">
-                            <span class="btn-icon">🔄</span> Reiniciar
-                        </button>
-                    </div>
-                </section>
-
-                <!-- Guardado -->
-                <section class="card">
-                    <h2>💾 Guardar Resultado</h2>
-                    
-                    <div class="save-options">
-                        <div class="save-row">
-                            <div class="input-group">
-                                <label for="saveName">Nombre del archivo:</label>
-                                <input type="text" id="saveName" placeholder="textura_generada" value="textura_pbr">
-                            </div>
-                        </div>
-                        
-                        <div class="format-selector">
-                            <h4>Formato de salida:</h4>
-                            <div class="format-buttons">
-                                <button class="format-btn active" data-format="png" title="Alta calidad, sin pérdidas">
-                                    <span>PNG</span>
-                                    <small>Calidad máxima</small>
-                                </button>
-                                <button class="format-btn" data-format="jpg" title="Compresión con pérdida, tamaño reducido">
-                                    <span>JPG</span>
-                                    <small>85% calidad</small>
-                                </button>
-                                <button class="format-btn" data-format="webp" title="Balance calidad/tamaño moderno">
-                                    <span>WEBP</span>
-                                    <small>80% calidad</small>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="action-buttons">
-                            <button id="saveBtn" class="btn primary">
-                                <span class="btn-icon">💾</span> Guardar Imagen
+                        <div class="dropzone">
+                            <input type="file" id="fileInput" accept="image/*" hidden>
+                            <button id="selectFile" class="btn btn-primary">
+                                <svg class="icon"><use href="icons.svg#i-image"/></svg> Seleccionar Imagen
                             </button>
-                            <button id="saveAllBtn" class="btn secondary">
-                                <span class="btn-icon">📦</span> Descargar Todo (ZIP)
+                            <div id="fileName" class="file-name-display">Ningún archivo cargado</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <svg class="icon"><use href="icons.svg#i-settings"/></svg>
+                            <h2>2. Ajustes de Generación</h2>
+                        </div>
+                        
+                        <div class="control-group">
+                            <div class="label-row">
+                                <label for="mapType">Tipo de Mapa</label>
+                            </div>
+                            <select id="mapType">
+                                <option value="normal">Normal Map</option>
+                                <option value="height">Height / Displacement</option>
+                                <option value="ao">Ambient Occlusion</option>
+                                <option value="roughness">Roughness</option>
+                                <option value="metalness">Metalness</option>
+                                <option value="opacity">Opacity</option>
+                            </select>
+                            <div class="help-text" id="mapDescription">
+                                Simula detalles de superficie mediante normales.
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="label-row">
+                                <label for="strength">Intensidad del Efecto</label>
+                                <span class="value-badge" id="strengthValue">1.0</span>
+                            </div>
+                            <input type="range" id="strength" min="0.1" max="5.0" step="0.1" value="1.0">
+                            <div class="help-text" id="strengthInfo">
+                                Ajusta la profundidad o contraste del mapa.
+                            </div>
+                        </div>
+
+                        <div class="control-group" style="margin-top: 32px;">
+                            <label style="margin-bottom: 12px; display: block;">Opciones de Compatibilidad</label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="invertY">
+                                    <div class="checkbox-content">
+                                        <span class="checkbox-title">Invertir Eje Y</span>
+                                        <span class="checkbox-desc">Alterna entre OpenGL y DirectX</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="invertR">
+                                    <div class="checkbox-content">
+                                        <span class="checkbox-title">Invertir Canal Rojo (X)</span>
+                                        <span class="checkbox-desc">Voltea la dirección horizontal</span>
+                                    </div>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="invertG">
+                                    <div class="checkbox-content">
+                                        <span class="checkbox-title">Invertir Canal Verde (Y)</span>
+                                        <span class="checkbox-desc">Voltea la dirección vertical</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button id="generate" class="btn btn-success">
+                                <svg class="icon"><use href="icons.svg#i-sparkles"/></svg> Generar Mapa
+                            </button>
+                            <button id="reset" class="btn btn-secondary">
+                                <svg class="icon"><use href="icons.svg#i-refresh"/></svg> Limpiar Todo
                             </button>
                         </div>
                     </div>
-                </section>
+                </div>
 
-                <!-- Miniaturas -->
-                <section class="card thumbnail-section">
-                    <h2>📂 Mapas Generados</h2>
-                    <div id="thumbnails" class="thumbnail-grid">
-                        <!-- Aquí aparecen las miniaturas -->
+                <div class="preview-column">
+                    <div class="card">
+                        <div class="card-header">
+                            <svg class="icon"><use href="icons.svg#i-image"/></svg>
+                            <h2>3. Visor de Resultados</h2>
+                        </div>
+                        <div class="preview-grid">
+                            <div class="canvas-box">
+                                <span class="canvas-title">Original</span>
+                                <div class="canvas-wrapper">
+                                    <canvas id="originalCanvas"></canvas>
+                                    <div id="originalPlaceholder" class="placeholder">
+                                        <svg class="icon"><use href="icons.svg#i-image"/></svg>
+                                        <span>Esperando imagen</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="canvas-box">
+                                <span class="canvas-title">Mapa PBR</span>
+                                <div class="canvas-wrapper">
+                                    <canvas id="resultCanvas"></canvas>
+                                    <div id="resultPlaceholder" class="placeholder">
+                                        <svg class="icon"><use href="icons.svg#i-sparkles"/></svg>
+                                        <span>Esperando generación</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="thumbnails-info">
-                        <small>💡 Haz clic en cualquier miniatura para cargarla en la vista principal</small>
-                    </div>
-                </section>
-            </div>
 
-            <!-- Pestaña 2: Ayuda -->
-            <div id="tab-help" class="tab-pane">
-                <section class="card">
-                    <h2>📚 Guía de Uso</h2>
-                    
-                    <div class="help-section">
-                        <h3>🎨 ¿Qué es PBR?</h3>
-                        <p>PBR (Physically Based Rendering) es una técnica de renderizado que simula el comportamiento físico de la luz en materiales. Los mapas PBR son texturas que describen diferentes propiedades de un material.</p>
-                        
-                        <h3>🗺️ Tipos de Mapas PBR</h3>
-                        
-                        <div class="map-type-info">
-                            <h4>Normal Map</h4>
-                            <p>Simula detalles de superficie sin añadir geometría adicional. Controla cómo la luz interactúa con la superficie.</p>
-                            <ul>
-                                <li><strong>Intensidad:</strong> Controla la profundidad aparente de los detalles</li>
-                                <li><strong>Uso:</strong> Para añadir detalles como grietas, costuras o patrones</li>
-                            </ul>
+                    <div class="card">
+                        <div class="card-header">
+                            <svg class="icon"><use href="icons.svg#i-save"/></svg>
+                            <h2>4. Exportar Textura</h2>
                         </div>
                         
-                        <div class="map-type-info">
-                            <h4>Height/Displacement Map</h4>
-                            <p>Mapa en escala de grises donde blanco=alto y negro=bajo. Útil para parallax mapping o displacement real.</p>
-                            <ul>
-                                <li><strong>Intensidad:</strong> Ajusta el contraste entre altos y bajos</li>
-                                <li><strong>Uso:</strong> Para detalles que afectan el silhouette del objeto</li>
-                            </ul>
+                        <div class="control-group">
+                            <label for="saveName">Nombre del archivo</label>
+                            <input type="text" id="saveName" value="textura_pbr" placeholder="Ej. pared_ladrillo">
                         </div>
-                        
-                        <div class="map-type-info">
-                            <h4>Ambient Occlusion (AO)</h4>
-                            <p>Simula cómo la luz ambiental es bloqueada en grietas y rincones. Añade realismo y profundidad.</p>
-                            <ul>
-                                <li><strong>Intensidad:</strong> Controla la oscuridad de las áreas ocluidas</li>
-                                <li><strong>Uso:</strong> Para añadir sombras de contacto y profundidad</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="map-type-info">
-                            <h4>Roughness Map</h4>
-                            <p>Controla cuán rugosa o suave es una superficie. Blanco=rugoso, Negro=suave (espejo).</p>
-                            <ul>
-                                <li><strong>Intensidad:</strong> Ajusta el rango de rugosidad</li>
-                                <li><strong>Uso:</strong> Para materiales como metal oxidado, madera, tela</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="map-type-info">
-                            <h4>Metalness Map</h4>
-                            <p>Define qué partes son metálicas (blanco) y cuáles no (negro). Los metales tienen reflexiones diferentes.</p>
-                            <ul>
-                                <li><strong>Intensidad:</strong> Controla el contraste metálico/no metálico</li>
-                                <li><strong>Uso:</strong> Para objetos con partes metálicas y no metálicas</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="map-type-info">
-                            <h4>Opacity Map</h4>
-                            <p>Controla la transparencia del material. Blanco=opaco, Negro=transparente.</p>
-                            <ul>
-                                <li><strong>Intensidad:</strong> Ajusta el rango de transparencia</li>
-                                <li><strong>Uso:</strong> Para ventanas, telas finas, hojas, etc.</li>
-                            </ul>
-                        </div>
-                        
-                        <h3>🔄 Opciones de Inversión</h3>
-                        <p>Diferentes motores 3D (Unity, Unreal, Blender) pueden usar diferentes convenciones para los mapas de normales:</p>
-                        <ul>
-                            <li><strong>Invertir Y:</strong> Cambia entre DirectX (Windows) y OpenGL (macOS/Linux) style</li>
-                            <li><strong>Invertir Rojo/Verde:</strong> Para corregir la dirección de las normales</li>
-                        </ul>
-                        
-                        <h3>💾 Formatos de Salida</h3>
-                        <div class="format-info-grid">
-                            <div class="format-info">
-                                <h4>PNG</h4>
-                                <p><strong>Ventajas:</strong> Sin pérdida de calidad, soporta transparencia</p>
-                                <p><strong>Recomendado para:</strong> Normal maps, opacity maps</p>
-                            </div>
-                            <div class="format-info">
-                                <h4>JPG</h4>
-                                <p><strong>Ventajas:</strong> Tamaño pequeño, amplia compatibilidad</p>
-                                <p><strong>Recomendado para:</strong> Texturas de color, albedo maps</p>
-                            </div>
-                            <div class="format-info">
-                                <h4>WEBP</h4>
-                                <p><strong>Ventajas:</strong> Balance moderno calidad/tamaño</p>
-                                <p><strong>Recomendado para:</strong> Proyectos web, optimización</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
 
-            <!-- Pestaña 3: Acerca de -->
-            <div id="tab-about" class="tab-pane">
-                <section class="card">
-                    <h2>ℹ️ Acerca de Img2 PBR Generator</h2>
-                    
-                    <div class="about-content">
-                        <div class="app-info">
-                            <h3>📱 Información de la App</h3>
-                            <p><strong>Versión:</strong> 1.0.0</p>
-                            <p><strong>Tipo:</strong> Aplicación Web Progresiva (PWA)</p>
-                            <p><strong>Licencia:</strong> Apache 2.0</p>
-                            <p><strong>Estado:</strong> Código Abierto</p>
-                        </div>
-                        
-                        <div class="developer-info">
-                            <h3>👨‍💻 Desarrollador</h3>
-                            <p><strong>Nombre:</strong> Yandrox</p>
-                            <p><strong>Email:</strong> yandrox9012@gmail.com</p>
-                            <p><strong>Telegram:</strong> @yandrox</p>
-                            <p><strong>Web:</strong> <a href="https://yandrox.unaux.com" target="_blank">https://yandrox.unaux.com</a></p>
-                        </div>
-                        
-                        <div class="technical-info">
-                            <h3>⚙️ Tecnologías Utilizadas</h3>
-                            <ul>
-                                <li>HTML5 Canvas para procesamiento de imágenes</li>
-                                <li>JavaScript ES6+ para algoritmos de generación</li>
-                                <li>Service Workers para funcionamiento offline</li>
-                                <li>Web App Manifest para instalación como PWA</li>
-                                <li>JSZip para compresión de archivos</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="license-info">
-                            <h3>📄 Licencia Apache 2.0</h3>
-                            <p>Esta aplicación es de código abierto bajo la licencia Apache 2.0. Esto significa que puedes:</p>
-                            <ul>
-                                <li>Usar la aplicación libremente para cualquier propósito</li>
-                                <li>Modificar el código fuente</li>
-                                <li>Distribuir copias modificadas</li>
-                                <li>Usar el código en proyectos comerciales</li>
-                            </ul>
-                            <p><strong>Condiciones:</strong> Debes incluir el aviso de copyright original y los avisos de atribución.</p>
-                            <p><a href="#license-full" class="license-link">Ver licencia completa</a></p>
-                        </div>
-                        
-                        <div class="contributing-info">
-                            <h3>🤝 Contribuir al Proyecto</h3>
-                            <p>¡Las contribuciones son bienvenidas! El proyecto está alojado en GitHub:</p>
-                            <div class="github-link">
-                                <a href="https://github.com/Yandrox/Img2-PBR-Generator" target="_blank" class="btn secondary">
-                                    <span class="btn-icon">🐙</span> Ver en GitHub
-                                </a>
+                        <div class="control-group">
+                            <label>Formato de imagen</label>
+                            <div class="format-tabs">
+                                <button class="format-btn active" data-format="png">
+                                    <span class="format-name">PNG</span>
+                                    <span class="format-desc">Calidad</span>
+                                </button>
+                                <button class="format-btn" data-format="jpg">
+                                    <span class="format-name">JPG</span>
+                                    <span class="format-desc">Ligero</span>
+                                </button>
+                                <button class="format-btn" data-format="webp">
+                                    <span class="format-name">WEBP</span>
+                                    <span class="format-desc">Balance</span>
+                                </button>
                             </div>
-                            <p>Puedes reportar bugs, sugerir características o enviar pull requests.</p>
                         </div>
-                        
-                        <div class="changelog">
-                            <h3>📝 Historial de Cambios</h3>
-                            <div class="version">
-                                <h4>v1.0.0 (Actual)</h4>
-                                <ul>
-                                    <li>Generación de 6 tipos de mapas PBR</li>
-                                    <li>Control de intensidad por tipo de mapa</li>
-                                    <li>Opciones de inversión para compatibilidad</li>
-                                    <li>Exportación en PNG, JPG y WEBP</li>
-                                    <li>Funcionamiento offline completo</li>
-                                    <li>Interfaz responsive para móvil y desktop</li>
-                                </ul>
-                            </div>
+
+                        <div class="button-group">
+                            <button id="saveBtn" class="btn btn-primary">
+                                <svg class="icon"><use href="icons.svg#i-save"/></svg> Guardar Imagen
+                            </button>
+                            <button id="saveAllBtn" class="btn btn-secondary">
+                                <svg class="icon"><use href="icons.svg#i-package"/></svg> Descargar ZIP
+                            </button>
                         </div>
                     </div>
-                </section>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <svg class="icon"><use href="icons.svg#i-folder"/></svg>
+                            <h2>Sesión Actual</h2>
+                        </div>
+                        <div id="thumbnails" class="thumbnail-grid">
+                            <!-- Generados por app.js -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Footer -->
+        <!-- GUÍA -->
+        <div id="tab-help" class="tab-pane">
+            <div class="doc-container">
+                <div class="card-header" style="border: none; padding: 0; margin-bottom: 24px;">
+                    <svg class="icon" style="width: 32px; height: 32px;"><use href="icons.svg#i-book"/></svg>
+                    <h2 style="font-size: 1.8rem;">Documentación y Guía</h2>
+                </div>
+                
+                <div class="doc-content">
+                    <h2>¿Qué es el PBR?</h2>
+                    <p><strong>PBR (Physically Based Rendering)</strong> es un estándar en gráficos 3D que simula cómo la luz interactúa con las superficies del mundo real. En lugar de adivinar colores y brillos, usamos "mapas" que le dicen al motor gráfico las propiedades físicas del material.</p>
+                    
+                    <h2>Tipos de Mapas Disponibles</h2>
+                    <ul>
+                        <li><strong>Normal Map:</strong> Añade falsos relieves (como grietas o costuras) simulando luces y sombras direccionales. No cambia la geometría 3D real.</li>
+                        <li><strong>Height / Displacement:</strong> Mapa en escala de grises. El blanco es lo más alto y el negro lo más bajo. Útil para Parallax Mapping.</li>
+                        <li><strong>Ambient Occlusion (AO):</strong> Oscurece las áreas donde la luz no llega fácilmente (grietas y esquinas), aportando realismo.</li>
+                        <li><strong>Roughness:</strong> Define qué tan mate o brillante es el objeto. El blanco es muy rugoso (mate) y el negro es liso (reflectante).</li>
+                        <li><strong>Metalness:</strong> Separa las partes metálicas (blanco) de las no metálicas (negro). Los metales reflejan la luz de forma distinta.</li>
+                        <li><strong>Opacity:</strong> Controla la transparencia. El blanco es opaco y el negro es completamente transparente.</li>
+                    </ul>
+
+                    <h2>Consejos de Uso</h2>
+                    <p>Para obtener los mejores resultados, se recomienda usar <strong>texturas cuadradas</strong> (ej. 1024x1024 o 2048x2048 píxeles) y en alta resolución.</p>
+                    <p>Si estás usando Unity o Unreal Engine, asegúrate de revisar las opciones de compatibilidad (Invertir Y / Canales) para que el Normal Map se vea correctamente.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACERCA DE -->
+        <div id="tab-about" class="tab-pane">
+            <div class="doc-container">
+                <div class="card-header" style="border: none; padding: 0; margin-bottom: 24px;">
+                    <svg class="icon" style="width: 32px; height: 32px;"><use href="icons.svg#i-info"/></svg>
+                    <h2 style="font-size: 1.8rem;">Acerca del Proyecto</h2>
+                </div>
+                
+                <div class="info-alert">
+                    <strong>100% Privado:</strong> Todas las imágenes se procesan localmente en tu navegador. Nada se sube a internet.
+                </div>
+
+                <div class="doc-content">
+                    <p><strong>Img2 PBR Generator</strong> es una herramienta web progresiva (PWA) de código abierto, creada para ayudar a artistas 3D, desarrolladores de videojuegos y diseñadores a generar mapas PBR rápidamente.</p>
+                    
+                    <h2>Tecnología</h2>
+                    <ul>
+                        <li>HTML5 Canvas para procesamiento de píxeles en tiempo real.</li>
+                        <li>JavaScript Vanilla (ES6+).</li>
+                        <li>Service Workers para funcionar sin conexión.</li>
+                        <li>JSZip para compresión de archivos.</li>
+                    </ul>
+
+                    <h2>Desarrollador</h2>
+                    <p>Creado por <strong>Yandrox</strong>. Puedes ver el código fuente, reportar problemas o contribuir en el repositorio oficial:</p>
+                    
+                    <div style="margin-top: 24px;">
+                        <a href="https://github.com/Yandrox/Img2-PBR-Generator" target="_blank" class="btn btn-secondary" style="width: auto; text-decoration: none;">
+                            <svg class="icon"><use href="icons.svg#i-github"/></svg> Ver en GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer>
-            <div class="footer-content">
-                <p>✨ <strong>Img2 PBR Generator</strong> - Herramienta para artistas 3D</p>
-                <p class="footer-links">
-                    <span>Desarrollado por <strong>Yandrox</strong></span>
-                    <span>•</span>
-                    <span>Licencia: <strong>Apache 2.0</strong></span>
-                    <span>•</span>
-                    <span><a href="privacy.html">Privacidad</a></span>
-                    <span><a href="terms.html">Términos</a></span>
-                </p>
-                <p class="small">Esta aplicación funciona completamente offline y es 100% gratuita</p>
+            <p>&copy; 2026 Img2 PBR Generator. Código abierto bajo Licencia Apache 2.0.</p>
+            <div style="margin-top: 12px;">
+                <a href="privacy.html">Política de Privacidad</a>
+                <span>•</span>
+                <a href="terms.html">Términos y Condiciones</a>
             </div>
         </footer>
-    </div>
+    </main>
 
-    <!-- Mensajes -->
-    <div id="message" class="message"></div>
+    <div id="message" class="message-toast"></div>
 
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="app.js"></script>
-    
-    <!-- PWA -->
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
         }
-        
-        // Instalar como PWA
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-        });
     </script>
 </body>
 </html>

@@ -112,7 +112,7 @@ function init() {
     setupButtons();
     setupCanvas();
     
-    showMessage('Img2 PBR Generator listo', 'info');
+    showMessage('Img2 PBR listo para procesar', 'info');
 }
 
 // ===== CONFIGURACIÓN DE TABS =====
@@ -616,11 +616,11 @@ function addThumbnail(type, imageData) {
     
     // Create container
     const container = document.createElement('div');
-    container.className = 'thumbnail-item';
+    container.className = 'thumb-item';
     container.title = `Haz clic para cargar el mapa ${type}`;
     
     const label = document.createElement('div');
-    label.className = 'thumbnail-label';
+    label.className = 'thumb-label';
     label.textContent = type;
     
     container.appendChild(thumbCanvas);
@@ -781,15 +781,15 @@ function resetApp() {
 // ===== MENSAJES =====
 function showMessage(text, type = 'info') {
     elements.messageEl.textContent = text;
-    elements.messageEl.className = 'message ' + type;
+    elements.messageEl.className = 'message-toast ' + type;
     elements.messageEl.style.display = 'block';
     
     // Entrance animation
-    elements.messageEl.style.animation = 'slideIn 0.3s ease';
+    elements.messageEl.style.animation = 'slideUp 0.3s ease';
     
     // Hide after 4 seconds
     setTimeout(() => {
-        elements.messageEl.style.animation = 'slideOut 0.3s ease';
+        elements.messageEl.style.animation = 'slideDown 0.3s ease';
         setTimeout(() => {
             elements.messageEl.style.display = 'none';
         }, 300);

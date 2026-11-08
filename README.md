@@ -1,104 +1,130 @@
 # 🎨 Img2 PBR Generator
 
 ![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
-![PWA](https://img.shields.io/badge/PWA-✓-brightgreen.svg)
-![Offline](https://img.shields.io/badge/Offline-✓-success.svg)
-![No Tracking](https://img.shields.io/badge/No%20Tracking-✓-green.svg)
+![PWA](https://img.shields.io/badge/PWA-Ready-brightgreen.svg)
+![Android](https://img.shields.io/badge/Android-APK-success.svg)
+![Offline](https://img.shields.io/badge/Offline-100%25-success.svg)
+![Privacy](https://img.shields.io/badge/No_Tracking-Privacy-green.svg)
 
-**Img2 PBR Generator** es una aplicación web para artistas 3D que permite generar mapas PBR (Physically Based Rendering) a partir de texturas base. Funciona completamente offline y es 100% gratuita.
-
----
-
-## ✨ Características Principales
-
-### 🗺️ 6 Tipos de Mapas PBR
-* **Normal Maps** - Detalles de superficie sin geometría extra
-* **Height/Displacement Maps** - Para parallax y displacement
-* **Ambient Occlusion** - Sombras de contacto y profundidad
-* **Roughness Maps** - Control de rugosidad del material
-* **Metalness Maps** - Definición de áreas metálicas
-* **Opacity Maps** - Control de transparencia
-
-### ⚙️ Control Avanzado
-* **Intensidad ajustable** (0.1 - 5.0) por tipo de mapa
-* **Opciones de inversión** para compatibilidad con motores 3D
-* **Soporte para OpenGL/DirectX** (inversión de canales Y/R/G)
-
-### 💾 Múltiples Formatos de Exportación
-* **PNG** - Calidad máxima, sin pérdidas
-* **JPG** - Compresión con tamaño reducido
-* **WEBP** - Balance moderno calidad/tamaño
-
-### 📱 Experiencia de Usuario
-* **Aplicación Web Progresiva (PWA)** - Instálala en tu dispositivo
-* **Funcionamiento 100% offline** - Sin necesidad de internet
-* **Interfaz responsive** - Optimizada para móvil y desktop
-* **Procesamiento rápido** - Todo en el navegador
+**Img2 PBR Generator** es una herramienta multiplataforma diseñada para artistas 3D, desarrolladores de videojuegos y diseñadores. Permite generar mapas PBR (Physically Based Rendering) de alta calidad a partir de texturas base, operando **100% de forma local y offline**.
 
 ---
 
-## 🚀 Cómo Usar
+## Características Principales
 
-### Online (Recomendado)
-1. Visita: [https://yandrox.unaux.com/img2-pbr/index.html](https://yandrox.unaux.com/img2-pbr/index.html)
-2. Agregala a tu pantalla de inicio para **"Instalarla"** en tu dispositivo
-3. ¡Listo! Funciona como una app nativa
+### 6 Tipos de Mapas PBR
+* **Normal Maps:** Simula detalles de superficie (grietas, costuras) sin añadir geometría 3D extra.
+* **Height / Displacement:** Mapa de alturas en escala de grises (Blanco=alto, Negro=bajo) ideal para parallax.
+* **Ambient Occlusion (AO):** Añade sombras de contacto y profundidad en rincones y grietas.
+* **Roughness:** Define la rugosidad del material (Blanco=mate, Negro=brillante).
+* **Metalness:** Separa áreas metálicas (Blanco) de no metálicas (Negro).
+* **Opacity:** Controla la transparencia del material (Blanco=opaco).
 
-### Localmente
-**Clona el repositorio**
+### Control Avanzado
+* **Intensidad ajustable:** Control deslizante (0.1 a 5.0) adaptado a cada tipo de mapa.
+* **Compatibilidad multiplataforma:** Opciones de inversión para canales Y, R y G (OpenGL vs. DirectX).
+* **Procesamiento en tiempo real:** Generación instantánea sin recargar la página.
 
-git clone [https://github.com/Yandrox/Img2-PBR-Generator.git](https://github.com/Yandrox/Img2-PBR-Generator.git)
+### Exportación Flexible
+* **PNG:** Calidad máxima sin pérdidas (Ideal para Normal Maps).
+* **JPG:** Compresión ligera (Ideal para texturas de color).
+* **WEBP:** Formato moderno con balance entre peso y calidad.
+* **Descarga ZIP:** Exporta todos los mapas generados en un solo clic.
 
-**Abre *index.html* en tu navegador**
+### Experiencia Multiplataforma
+* **Web (PWA):** Instalable en PC y móvil directamente desde el navegador.
+* **Android (APK):** Aplicación nativa para dispositivos Android.
 
-**¡Eso es todo! No necesita servidor ni instalación**
+---
 
-## 🎮 Guía Rápida
- * Carga una textura base (JPG, PNG, WEBP, GIF)
- * Selecciona el tipo de mapa que quieres generar
- * Ajusta la intensidad según el efecto deseado
- * Configura las inversiones si es necesario para tu motor 3D
- * Haz clic en "Generar Mapa"
- * Descarga en tu formato preferido
- ## 🛠️ Tecnologías Utilizadas
- * HTML5 Canvas - Procesamiento de imágenes en el navegador
- * JavaScript ES6+ - Lógica de generación de mapas
- * Service Workers - Funcionamiento offline
- * Web App Manifest - Instalación como PWA
- * JSZip - Compresión de archivos para descarga múltiple
-## 🤝 Contribuir
-¡Las contribuciones son bienvenidas! Si quieres mejorar Img2 PBR Generator:
- * Reporta bugs - Abre un issue describiendo el problema
- * Sugiere características - ¿Qué te gustaría ver en futuras versiones?
- * Envía Pull Requests - Mejoras directas al código
-## Áreas de Mejora
- * Mejores algoritmos de generación
- * Soporte para más formatos de entrada/salida
- * Mejoras en la interfaz de usuario
- * Optimizaciones de rendimiento
-## 📄 Licencia
-Este proyecto está licenciado bajo la Licencia Apache 2.0 - ver el archivo LICENSE para más detalles.
-Puedes:
- * ✅ Usar la aplicación para cualquier propósito
- * ✅ Modificar el código fuente
- * ✅ Distribuir copias modificadas
- * ✅ Usar en proyectos comerciales
-Debes:
- * 📝 Incluir el aviso de copyright original
- * 📝 Mantener los avisos de atribución
-## 👨🏻‍💻Desarrollador
+## Plataformas y Descargas
+
+### Android (APK)
+La aplicación está disponible como un archivo `.apk` nativo para su instalación en dispositivos Android.
+* **Descargar APK:** [Haz clic aquí para descargar la última versión (v1.0.0)](enlace-a-tu-apk-aqui) 
+*(Nota para el desarrollador: Sustituye "enlace-a-tu-apk-aqui" por el enlace de tu GitHub Releases cuando subas el archivo).*
+* **Instalación:** Es posible que debas habilitar la "Instalación de fuentes desconocidas" en los ajustes de seguridad de tu dispositivo.
+
+### Web (PWA)
+Puedes usar la aplicación directamente en tu navegador o instalarla como una App Nativa (PWA):
+1. Abre la aplicación en tu navegador (Chrome, Edge, Safari).
+2. En la barra de direcciones o en el menú del navegador, busca la opción **"Instalar Aplicación"** o **"Añadir a la pantalla de inicio"**.
+3. ¡Listo! Funcionará sin conexión a internet.
+
+---
+
+## Guía Rápida de Uso
+1. **Carga tu textura base** (Formatos soportados: JPG, PNG, WEBP, GIF).
+2. **Selecciona el tipo de mapa** PBR que deseas generar (Normal, Height, AO, etc.).
+3. **Ajusta la intensidad** utilizando el control deslizante para ver el resultado en tiempo real.
+4. **Configura las inversiones** (Y, R, G) si necesitas adaptar el mapa para un motor específico como Unity o Unreal Engine.
+5. Haz clic en **"Generar Mapa"**.
+6. **Guarda el resultado** en tu formato preferido (PNG, JPG, WEBP) o descarga todo el conjunto en un archivo **ZIP**.
+
+---
+
+## Tecnologías Utilizadas
+* **HTML5 Canvas:** Procesamiento de imágenes y manipulación de píxeles.
+* **JavaScript (ES6+):** Algoritmos de generación de mapas (Sobel, pases de contraste, etc.).
+* **Service Workers:** Soporte para funcionamiento offline y caché (PWA).
+* **Web App Manifest:** Configuración para instalación en dispositivos móviles y PC.
+* **JSZip:** Generación de archivos comprimidos para la descarga múltiple.
+
+---
+
+## Hoja de Ruta (Roadmap)
+
+Actualmente trabajando en futuras versiones:
+
+- ✅ Generación de 6 mapas PBR base.
+- ✅ Exportación múltiple en ZIP.
+- ✅ Versión App Web Progresiva (PWA).
+- ✅ Versión Android (APK).
+- ❌ Implementación de algoritmos de generación avanzados (Edge detection para AO).
+- ❌ Soporte para texturas de alta resolución (4K sin pérdida de rendimiento).
+- ❌ Modo de previsualización 3D en tiempo real (Three.js).
+
+---
+
+## Contribuir
+
+¡Las contribuciones de la comunidad son lo que hace que el código abierto sea un lugar increíble para aprender, inspirar y crear! Cualquier contribución que hagas será muy apreciada.
+
+Si encuentras un error, por favor abre un Issue detallando el problema.
+
+---
+
+## Licencia
+
+Este proyecto está distribuido bajo la Licencia Apache 2.0. 
+Esto significa que puedes:
+
+- ✅ Usar la aplicación para cualquier propósito (personal o comercial).
+- ✅ Modificar el código fuente a tu gusto.
+- ✅ Distribuir copias modificadas.
+
+**Condición:** Debes incluir el aviso de copyright original y los avisos de atribución en todas las copias o derivados del proyecto.
+
+Para más detalles, consulta el archivo LICENSE.
+
+---
+
+## Desarrollador
+
 Yandrox - Desarrollador Independiente
- * 📧 Email: yandrox9012@gmail.com
- * 📱 Telegram: @yandrox
- * 🌐 Web: https://yandrox.unaux.com
- * 🐙 GitHub: https://github.com/Yandrox
-## 🙏 Agradecimientos
- * Comunidad de artistas 3D - Por sus valiosos comentarios
- * Desarrolladores de código abierto - Por las herramientas utilizadas
- * Mozilla Developer Network - Por la excelente documentación web
- ## ⭐¿Te gusta el proyecto?
-¡Considera darle una estrella en GitHub! Esto ayuda a que más personas descubran la herramienta.
-* 🐛 ¿Encontraste un bug?
-Por favor, abre un issue en GitHub con los detalles del problema.
-* 💡 ¿Tienes una idea?
-¡Me encantaría escucharla! Abre un issue o contáctame directamente.
+
+- GitHub: @Yandrox
+- Email: yandrox9012@gmail.com
+- Telegram: @yandrox
+
+---
+
+## Agradecimientos
+
+- A la comunidad de artistas 3D por el feedback y los casos de prueba.
+
+---
+
+## ⭐ ¿Te gusta el proyecto?
+¡Considera darle una estrella en GitHub!
+Esto ayuda a que más personas descubran la herramienta.

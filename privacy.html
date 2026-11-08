@@ -5,98 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidad - Img2 PBR Generator</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .privacy-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.8;
-        }
-        .privacy-content h1, .privacy-content h2, .privacy-content h3 {
-            color: #3b82f6;
-            margin-top: 30px;
-        }
-        .privacy-content ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-        .privacy-content li {
-            margin-bottom: 10px;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
-            background: #3b82f6;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="apple-touch-icon" href="icon.svg">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🔒 Política de Privacidad</h1>
-            <p class="subtitle">Img2 PBR Generator</p>
-        </header>
-
-        <div class="privacy-content">
-            <h2>📱 Resumen</h2>
-            <p>Img2 PBR Generator es una <strong>aplicación web completamente offline</strong> que se ejecuta en tu navegador. <strong>No recopilamos, almacenamos ni transmitimos ningún dato personal</strong>.</p>
-
-            <h2>🔒 Datos que NO Recopilamos</h2>
-            <ul>
-                <li><strong>No recopilamos imágenes</strong>: Todas las imágenes que procesas se mantienen localmente en tu dispositivo.</li>
-                <li><strong>No recopilamos información personal</strong>: No solicitamos ni almacenamos nombres, emails, ubicaciones, etc.</li>
-                <li><strong>No usamos cookies de seguimiento</strong>: Solo usamos cookies técnicas esenciales para el funcionamiento de la aplicación.</li>
-                <li><strong>No hay análisis de uso</strong>: No usamos Google Analytics, Facebook Pixel u otras herramientas de seguimiento.</li>
-                <li><strong>No hay servidores propios</strong>: La aplicación funciona 100% en tu navegador.</li>
-            </ul>
-
-            <h2>💾 Almacenamiento Local</h2>
-            <p>La aplicación utiliza las siguientes tecnologías de almacenamiento local <strong>solo en tu dispositivo</strong>:</p>
-            <ul>
-                <li><strong>LocalStorage</strong>: Para guardar preferencias de usuario (como configuración de formatos).</li>
-                <li><strong>Cache API</strong>: Para almacenar archivos de la aplicación y permitir funcionamiento offline.</li>
-                <li><strong>IndexedDB</strong>: Para almacenamiento temporal de imágenes durante el procesamiento.</li>
-            </ul>
-            <p><strong>Todos estos datos se eliminan automáticamente</strong> cuando:</p>
-            <ul>
-                <li>Borras el caché del navegador</li>
-                <li>Desinstalas la aplicación</li>
-                <li>Usas la función "Reiniciar" de la app</li>
-            </ul>
-
-            <h2>🌐 Servicios de Terceros</h2>
-            <p>La aplicación utiliza solo un servicio externo:</p>
-            <ul>
-                <li><strong>JSZip CDN</strong>: Para la función de descarga ZIP (solo cuando usas esta función específica)</li>
-            </ul>
-            <p>Este servicio no recopila datos de los usuarios según su política de privacidad.</p>
-
-            <h2>👶 Para Niños</h2>
-            <p>Esta aplicación es segura para todas las edades ya que no recopila datos personales y funciona completamente offline.</p>
-
-            <h2>📞 Contacto</h2>
-            <p>Si tienes preguntas sobre esta política de privacidad, puedes contactarme en:</p>
-            <ul>
-                <li><strong>Email:</strong> yandrox9012@gmail.com</li>
-                <li><strong>GitHub:</strong> https://github.com/Yandrox</li>
-            </ul>
-
-            <h2>🔄 Cambios en esta Política</h2>
-            <p>Cualquier cambio en esta política será publicado en esta página con la fecha de actualización correspondiente.</p>
-
-            <a href="index.html" class="back-link">← Volver a la Aplicación</a>
+    <header class="site-header">
+        <div class="container header-inner" style="justify-content: center;">
+            <a href="index.html" class="logo">
+                <img src="icon.svg" alt="Logo Img2 PBR" class="logo-img">
+                Volver a la App
+            </a>
         </div>
+    </header>
 
-        <footer>
-            <div class="footer-content">
-                <p>✨ <strong>Img2 PBR Generator</strong> - Herramienta profesional para artistas 3D</p>
-                <p class="small">Esta aplicación funciona completamente offline y es 100% gratuita</p>
+    <main class="main-content container">
+        <div class="doc-container">
+            <div class="card-header" style="border: none; padding: 0; margin-bottom: 24px;">
+                <svg class="icon" style="width: 32px; height: 32px;"><use href="icons.svg#i-lock"/></svg>
+                <h1 style="font-size: 2rem;">Política de Privacidad</h1>
             </div>
-        </footer>
-    </div>
+            <p style="color: var(--text-muted); margin-bottom: 32px; font-family: monospace;">100% Offline / Sin Servidores</p>
+
+            <div class="info-alert">
+                <strong>Resumen:</strong> Esta aplicación no recopila, almacena ni transmite ningún dato personal. Tu privacidad está garantizada.
+            </div>
+
+            <div class="doc-content">
+                <h2><svg class="icon"><use href="icons.svg#i-x-circle"/></svg> Datos que NO recopilamos</h2>
+                <ul>
+                    <li>No guardamos ni subimos tus imágenes (todo ocurre en tu navegador).</li>
+                    <li>No solicitamos correos, nombres ni información de identificación.</li>
+                    <li>No utilizamos cookies de rastreo (Analytics, Pixels publicitarios, etc.).</li>
+                    <li>No tenemos servidores propios para procesar la app.</li>
+                </ul>
+
+                <h2><svg class="icon"><use href="icons.svg#i-save"/></svg> Almacenamiento Local</h2>
+                <p>Para que la aplicación funcione sin conexión (PWA), utilizamos la API de Caché y LocalStorage de tu navegador. Estos datos se borran automáticamente si limpias el caché de tu navegador o desinstalas la app.</p>
+
+                <h2><svg class="icon"><use href="icons.svg#i-globe"/></svg> Servicios de Terceros</h2>
+                <p>Hacemos uso de una librería externa (JSZip) alojada en un CDN público para la función de descarga en formato ZIP. Este CDN no rastrea datos de los usuarios según sus políticas de privacidad.</p>
+
+                <h2><svg class="icon"><use href="icons.svg#i-phone"/></svg> Contacto</h2>
+                <p>Si tienes preguntas sobre esta política, puedes contactar al desarrollador en: <strong>yandrox9012@gmail.com</strong></p>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center;">
+                <a href="index.html" class="btn btn-secondary" style="width: auto;">← Volver a la Aplicación</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

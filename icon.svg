@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <defs>
+        <!-- Gradiente de fondo -->
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1e1b4b"/>
+            <stop offset="100%" stop-color="#0f172a"/>
+        </linearGradient>
+        <!-- Gradiente de los bordes -->
+        <linearGradient id="edgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#818cf8"/>
+            <stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient>
+        <!-- Efecto de resplandor -->
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    
+    <!-- Fondo con bordes redondeados (Estilo iOS/Android) -->
+    <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+    <rect width="512" height="512" rx="112" fill="none" stroke="#3b82f6" stroke-opacity="0.15" stroke-width="8"/>
+
+    <!-- Cubo 3D (Simulando un Normal Map con tintes RGB) -->
+    <g filter="url(#glow)">
+        <!-- Cara Superior (Azul - Eje Z) -->
+        <path d="M256 140 L380 210 L256 280 L132 210 Z" fill="#3b82f6" fill-opacity="0.15" stroke="url(#edgeGrad)" stroke-width="12" stroke-linejoin="round"/>
+        
+        <!-- Cara Izquierda (Rojo - Eje X) -->
+        <path d="M132 210 L256 280 L256 410 L132 340 Z" fill="#ef4444" fill-opacity="0.15" stroke="url(#edgeGrad)" stroke-width="12" stroke-linejoin="round"/>
+        
+        <!-- Cara Derecha (Verde - Eje Y) -->
+        <path d="M380 210 L256 280 L256 410 L380 340 Z" fill="#10b981" fill-opacity="0.15" stroke="url(#edgeGrad)" stroke-width="12" stroke-linejoin="round"/>
+        
+        <!-- Vértices (Nodos del modelo 3D) -->
+        <circle cx="256" cy="140" r="9" fill="#fff"/>
+        <circle cx="380" cy="210" r="9" fill="#fff"/>
+        <circle cx="132" cy="210" r="9" fill="#fff"/>
+        <circle cx="256" cy="280" r="11" fill="#fff"/>
+        <circle cx="256" cy="410" r="9" fill="#fff"/>
+        <circle cx="132" cy="340" r="9" fill="#fff"/>
+        <circle cx="380" cy="340" r="9" fill="#fff"/>
+    </g>
+    
+    <!-- Destellos (Efecto de Generación Mágica) -->
+    <g fill="#fff" filter="url(#glow)">
+        <path d="M380 100 L390 130 L420 140 L390 150 L380 180 L370 150 L340 140 L370 130 Z" />
+        <path d="M140 90 L147 110 L167 117 L147 124 L140 144 L133 124 L113 117 L133 110 Z" fill-opacity="0.7" />
+        <path d="M400 320 L404 332 L416 336 L404 340 L400 352 L396 340 L384 336 L396 332 Z" fill-opacity="0.5" />
+    </g>
+</svg>
